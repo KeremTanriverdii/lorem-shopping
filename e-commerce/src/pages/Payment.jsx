@@ -16,7 +16,6 @@ function Payment() {
     const { user } = useAuth()
     const navigate = useNavigate()
     const cartItems = useSelector(state => state.cart.items);
-    const uniqueItemCount = useSelector((state) => state.cart.uniqueItemCount);
 
     const [selectedCard, setSelectedCard] = useState(() => {
         const savedCard = sessionStorage.getItem('credit');
@@ -27,7 +26,6 @@ function Payment() {
         return savedAddress ? JSON.parse(savedAddress) : '';
     }
     );
-    const [uniqueItem, setUniqueItem] = useState([]);
     const [shipping, setShipping] = useState(50);
 
     const [isAgreed, setIsAgreed] = useState(false);
@@ -68,7 +66,6 @@ function Payment() {
     useEffect(() => {
         const subTotal = cartItems.length > 0 ?
             cartItems.reduce((total, item) => total + item.price * item.quantity, 0) : 0;
-        console.log(subTotal)
         if (subTotal > 50) {
             setShipping(0);
             setMessage(
@@ -78,7 +75,6 @@ function Payment() {
             setShipping(10);
         }
     }, [cartItems])
-    console.log(shipping)
 
     const handleSelectedCard = (card) => {
         if (!user) {
@@ -146,7 +142,6 @@ function Payment() {
         if (selectedAddress && selectedCard) {
             try {
                 const orderRef = collection(db, 'users', user.uid, 'orders')
-                console.log(orderRef)
                 const orderDetails = {
                     items: cartItems,
                     orderDate: new Date(),

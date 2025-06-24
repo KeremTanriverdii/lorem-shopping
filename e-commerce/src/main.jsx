@@ -4,7 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import App from './App.jsx'
 import './css/index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
+import HomePage from './pages/HomePage.jsx'
+import Payment from './pages/Payment.jsx'
 const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage.jsx'))
 const CategoryPage = React.lazy(() => import('./pages/CategoryPage.jsx'))
 const SubCategoryPage = React.lazy(() => import('./pages/SubCategoryPage.jsx'))
@@ -13,7 +14,6 @@ const Login = React.lazy(() => import('./components/Login.jsx'))
 const Register = React.lazy(() => import('./components/Register.jsx'))
 const Basket = React.lazy(() => import('./pages/Basket.jsx'))
 const OrderHistory = React.lazy(() => import('./pages/OrderHistory.jsx'))
-const Payment = React.lazy(() => import('./pages/Payment.jsx'))
 const OrderSuccessfull = React.lazy(() => import('./pages/OrderSuccessfull.jsx'))
 
 import { Provider } from 'react-redux'

@@ -30,7 +30,6 @@ const cartSlice = createSlice({
                 item.id === newItem.id &&
                 item.size === newItem.size &&
                 item.color === newItem.color)
-            console.log(newItem)
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {

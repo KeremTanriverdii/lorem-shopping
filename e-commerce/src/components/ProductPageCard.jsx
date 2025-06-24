@@ -94,7 +94,6 @@ function ProductPageCard({ productDetails }) {
       }, { replace: true });
     }
   }, [productDetails.variants, navigate, location.pathname]);
-  console.log(selectedColor)
   // Choose size method
   const handleSize = (size) => {
     setSelectedSize(size);
