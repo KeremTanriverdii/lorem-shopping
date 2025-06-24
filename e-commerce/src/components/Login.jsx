@@ -103,7 +103,7 @@ const LoginPage = () => {
                         {/* Right Side - Purple background */}
                         <Col md={6} lg={6}
                             className="d-flex flex-column justify-content-center bg-gradient-primary border rounded p-5">
-                            <h3 className="text-white">Welcome Back</h3>
+                            <h3 className="text-white">Welcome Back Lorem Shopping</h3>
                             <p>Simply Create your account by clicking the Signup Button</p>
                             <Link to="/register">
                                 <Button variant="outline-light">Sign Up</Button>
