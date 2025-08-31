@@ -61,7 +61,7 @@ function NavbarX() {
     };
 
     return (
-        <Navbar expand="sm" className='px-5' data-bs-theme='light' >
+        <Navbar expand="sm" className='px-lg-5 px-2' data-bs-theme='light' >
             <Navbar.Brand href="/" className='d-flex gap-3'>
                 <img
                     src="/loremNav.png"

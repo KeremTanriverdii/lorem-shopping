@@ -16,14 +16,14 @@ function HomePage() {
         <div >
             <Container fluid >
                 <Row
-                    className='align-items-center '
+                    className='align-items-center text-center'
                     style={{ background: '#F9F9F9' }}
                 >
-                    <Col sm={12} md={4} lg={4} className='d-flex'>
-                        <div className='first-col mx-auto '>
+                    <Col sm={12} md={4} lg={4} className='d-flex '>
+                        <div className='first-col mx-auto text-center'>
                             Lorem İpsum 😍
                             <h2>Trendy <br /> <span className='fs-1'>Collection </span></h2>
-                            <p className='w-75 text-custom mb-3'>Seedily say has suitable disposal and boy Exerise joy man chidren rejoiced</p>
+                            <p className='text-custom mb-3'>Seedily say has suitable disposal and boy Exerise joy man chidren rejoiced</p>
                             <div className='mt-4 mx-auto'>
                                 <Button
                                     as={Link}
@@ -31,7 +31,7 @@ function HomePage() {
                                     variant='danger'
                                     className='p-4 border rounded'>Start Shopping</Button>
                             </div>
-                            <div className='d-flex gap-5 w-100 mt-4'>
+                            <div className='d-none d-lg-flex justify-content-center gap-lg-5 mt-5'>
                                 <div>
                                     <h1>100K</h1>
                                     <p>Happy Castomer</p>

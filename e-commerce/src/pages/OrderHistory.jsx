@@ -50,7 +50,7 @@ function OrderHistory() {
             {orders.map((order) => (
                 <Row key={order.id} className='d-flex p-3 justify-content-center'>
 
-                    <Col sm={6} md={4} lg={4} className=' border rounded bg-light p-4'>
+                    <Col sm={6} md={4} lg={4} className='mt-3border rounded bg-light p-4'>
 
                         <p className='text-custom'>Order ID </p>
                         <p className='d-flex ' >#{order.id.substring(0, 15)}</p>
@@ -72,7 +72,7 @@ function OrderHistory() {
                         </div>
                     </Col>
 
-                    <Col sm={6} md={8} lg={8} className='d-flex flex-column justify-content-center border rounded p-3'>
+                    <Col sm={6} md={8} lg={8} className='mt-3 d-flex flex-column justify-content-center border rounded p-3'>
                         {order.items.map((subItem, sIdx) => (
                             <Row key={sIdx} className='mb-4'>
                                 <Col md={6} lg={3}

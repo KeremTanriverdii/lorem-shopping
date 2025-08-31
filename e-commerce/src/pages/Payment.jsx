@@ -175,9 +175,9 @@ function Payment() {
         <Container>
             <Row >
                 <Col md={12} lg={8} >
-                    <Card className='w-100'>
+                    <Card className='w-100 mb-5'>
                         <Col md={10} lg={10}>
-                            <Card.Body className='border rounded mt-3 h-100 '>
+                            <Card.Body className=' mt-3 mb-2 h-100 '>
                                 <h3 >Credit Card</h3>
                                 {selectedCard ? (
                                     <div className='justify-content-end'>
@@ -205,7 +205,7 @@ function Payment() {
                         </Col>
 
                         <Col md={10} lg={10} className='mt-5'>
-                            <Card.Body className='border rounded h-100 w-100'>
+                            <Card.Body className=' h-100 w-100'>
                                 <h3>Billing Address</h3>
                                 {selectedAddress ? (
                                     <div>
@@ -273,7 +273,7 @@ function Payment() {
                             </div>
                         </Form>
                     </Card>
-                    <Card className='h-auto w-100 d-flex justif-content-between border'>
+                    <Card className='h-auto mt-3  w-100 d-flex justif-content-between border'>
                         <div className='d-flex justify-content-between w-100 p-2'>
                             <h4 className=''>Products  </h4>
                             <h4>${totalPrice}</h4>

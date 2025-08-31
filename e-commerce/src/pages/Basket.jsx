@@ -101,7 +101,7 @@ const Basket = () => {
                 {/* Ürünler Tablosu */}
                 <Col md={8} >
                     <h4>Product</h4>
-                    <Table responsive className="align-middle">
+                    <Table responsive className="align-middle ">
                         <thead>
                             <tr>
                                 <th>Product</th>
@@ -157,7 +157,7 @@ const Basket = () => {
                                         </Form.Control>
                                     </td>
                                     <td>${item.totalPrice}</td>
-                                    <td>
+                                    <td className=''>
                                         <Button variant="outline-danger" onClick={() => handleRemoveItem(item)}>
                                             <FontAwesomeIcon icon={faTrash} style={{ color: "#000", }} />
                                         </Button>
@@ -169,7 +169,7 @@ const Basket = () => {
                     </Table>
                     <div className='d-flex justify-content-end align-items-center '>
                         <Button
-                            className='d-flex align-items-center'
+                            className='d-flex align-items-center mb-5'
                             variant='danger'
                             onClick={() => handleAllClear()}>Clear All
                             <FontAwesomeIcon icon={faTrash} style={{ color: "#000", marginLeft: '15px' }} />

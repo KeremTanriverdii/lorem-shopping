@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import '../css/Card.css'
 import { Navigation, Thumbs } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Scrollbar } from 'swiper/modules'
-import { Button, ButtonGroup, Alert, Row, Col, Accordion, Card, CardGroup, Container } from 'react-bootstrap'
+import { Button, ButtonGroup, Alert, Row, Col, Accordion, Card, Container } from 'react-bootstrap'
 import 'swiper/css';
 import 'swiper/css/navigation'
 import { useDispatch } from 'react-redux'
@@ -14,6 +14,14 @@ import { faCreditCard, faGlobe, faStar, faUserTie } from '@fortawesome/free-soli
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from '../store/Firebase'
 import { useMemo } from 'react'
+
+
+export function truncateText(text) {
+  if (text.length > 30) {
+    return text.slice(0, 30) + '...';
+  }
+  return text;
+}
 
 function ProductPageCard({ productDetails }) {
   // Product size ,color , variant choosen for the add to bag
@@ -230,44 +238,46 @@ function ProductPageCard({ productDetails }) {
   }, [productDetails.categoryId]);
 
   const productMap = relatedProducts.map(item => item.productsObj)
-  const randomPRoducts = productMap.sort(() => 0.5 - Math.random()).slice(0, 4)
+  const randomPRoducts = productMap.sort(() => 0.5 - Math.random()).slice(0, 7)
+
+  const maxCharacter = 30;
+
+
 
   // Related product  with same category using useMemo
   const relatedListJsx = useMemo(() => {
     return randomPRoducts.map((product, pIdx) =>
     (
-      <CardGroup key={pIdx} >
-        <Card className=' rounded'>
-          {/* // İf click cursor pointor go to product page */}
-          <Card.Img
-            src={product.thumbnail}
-            className='border rounded'
-            onClick={() => navigate(`/product/${product.slug}`)}
-          />
-          <Card.Body className='w-100'>
-            <div className='d-flex justify-content-between'>
-              <p className='text-custom'>{product.subCategories}</p>
-              {/* 5 stars structure */}
-              {starArray.map((iStar, index) => (
-                <FontAwesomeIcon
-                  key={index}
-                  icon={faStar}
-                  size='sm'
-                  color={rating >= iStar ? 'orange' : 'primary'}
-                />
-              ))}
-            </div>
-            <p className='w-100'>{product.name}</p>
-            <p className='d-inline text-danger'>${product.price}</p>
-          </Card.Body>
-        </Card>
-      </CardGroup>
+      <Card className='rounded w-auto' key={pIdx}>
+        {/* // İf click cursor pointor go to product page */}
+        <Card.Img
+          src={product.thumbnail}
+          className='img-fluid w-100 border rounded'
+          onClick={() => navigate(`/product/${product.slug}`)}
+        />
+        <Card.Body>
+          <div className='d-flex justify-content-between'>
+            <p className='text-custom'>{product.subCategories}</p>
+            {/* 5 stars structure */}
+            {starArray.map((iStar, index) => (
+              <FontAwesomeIcon
+                key={index}
+                icon={faStar}
+                size='sm'
+                color={rating >= iStar ? 'orange' : 'primary'}
+              />
+            ))}
+          </div>
+          <p className='w-100'>{truncateText(product.name)}</p>
+          <p className='d-inline mb-auto text-danger'>${product.price}</p>
+        </Card.Body>
+      </Card>
     )
     )
   }, [randomPRoducts])
 
   return (
-    <Container >
+    <Container className='mt-5' >
       <Row className='mt-3'>
         {/* Left Place - Product Images */}
         <Col sm={12} md={6} lg={6} >
@@ -277,7 +287,8 @@ function ProductPageCard({ productDetails }) {
             navigation={true}
             slidesPerView={1}
             spaceBetween={30}
-            className='w-75'
+            className=''
+          // w-75
           >
             {imageSlides}
           </Swiper>
@@ -330,8 +341,8 @@ function ProductPageCard({ productDetails }) {
 
           <div className='mt-3'>
             <p className="mb-2"><strong>Size:</strong></p>
-            <div className='d-flex flex-wrap '>
-              <ButtonGroup className="gap-3 w-75 ">
+            <div className='d-flex flex-wrap'>
+              <ButtonGroup className="gap-2">
                 {avaibleSizes}
               </ButtonGroup>
             </div>
@@ -339,7 +350,7 @@ function ProductPageCard({ productDetails }) {
           {/* Price and Add Basket Button*/}
           <div className="mt-2">
             <Button
-              className='w-75 p-3'
+              className='w-100 p-3'
               variant="warning" onClick={handleAddToCart}>
               Add
             </Button>
@@ -380,17 +391,21 @@ function ProductPageCard({ productDetails }) {
           </div>
 
 
-          <ul className='d-flex flex-column gap-3 mt-4 list-unstyled '>
+          <ul className='d-flex flex-column gap-3 mt-4 list-unstyled text-start '>
             <li><FontAwesomeIcon icon={faGlobe} size='2xl' /> Shipping World Wide</li>
             <li><FontAwesomeIcon icon={faCreditCard} size='xl' /> 100% Secured Payment</li>
             <li><FontAwesomeIcon icon={faUserTie} size='2xl' /> Made by Professionals </li>
           </ul>
         </Col>
         {/* Related Products Section */}
-        <h3>Related Products</h3>
-        <div className='related-container'>
-          {relatedListJsx}
-        </div>
+        <Row>
+          <Col sm={12} md={12} lg={12} className='p-lg-0'>
+            <h3 className='mt-5'>Related Products</h3>
+            <div className='d-flex flex-wrap justify-content-start align-items-stretch gap-5 justify-content-center'>
+              {relatedListJsx}
+            </div>
+          </Col>
+        </Row>
 
       </Row >
     </Container>

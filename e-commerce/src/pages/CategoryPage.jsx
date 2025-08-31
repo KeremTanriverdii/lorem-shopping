@@ -9,7 +9,7 @@ function CategoryPage() {
     const { categoryId } = useParams();
     // 'Products' react state was created to retrieve and assign the queried products.
     const [products, setProducts] = useState([]);
-
+    // Access my last elemenmt;
 
     // Firestore products get fetch with query
     useEffect(() => {
@@ -30,9 +30,9 @@ function CategoryPage() {
     }, [categoryId, db])
 
     return (
-        <div className='product-list'>
+        <div className='d-flex flex-wrap gap-3 mx-auto align-items-stretch p-5'>
             {products.map((product, productIdx) => (
-                <Link key={productIdx} to={`/product/${product.slug}`}>
+                <Link key={productIdx} to={`/product/${product.slug}`} className='horizontal'>
                     <React.Suspense fallback={<div>Loading...</div>}>
                         <ProductCard productDetails={product} />
                     </React.Suspense>

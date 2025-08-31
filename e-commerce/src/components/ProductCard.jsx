@@ -1,8 +1,9 @@
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, OverlayTrigger } from "react-bootstrap";
 import '../css/Card.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import { truncateText } from "./ProductPageCard";
 function ProductCard({ productDetails }) {
     // Get the productDetails in thumbnail field 
     const thumbnail = productDetails.thumbnail
@@ -33,7 +34,7 @@ function ProductCard({ productDetails }) {
     }, []);
 
     return (
-        <Card className="border rounded" border="circle">
+        <Card className="border rounded h-100" border="circle">
             {
                 thumbnail &&
                 <Card.Img
@@ -50,8 +51,8 @@ function ProductCard({ productDetails }) {
                 />
             }
             {/* Five star rating */}
-            <Card.Body className="w-100  border-top-0 ">
-                <Card.Text >{productDetails.name}</Card.Text>
+            <Card.Body className="border-top-0 ">
+                <Card.Text >{truncateText(productDetails.name)}</Card.Text>
                 <Card.Subtitle className="d-flex">
                     {startRating.map((ix, idx) => (
                         <FontAwesomeIcon
@@ -59,17 +60,17 @@ function ProductCard({ productDetails }) {
                             icon={faStar}
                             size="sm"
                             color={rating >= ix ? 'orange' : 'lightgrey'}
-                            className="flex-wrap "
+                            className="flex-wrap"
                         />
                     ))}
                     <p className="ms-2">{randomRatingNumber}</p>
                 </Card.Subtitle>
-                <div className="d-flex flex-column justify-content-between ">
+                <div className="d-flex  justify-content-between">
                     <p >{productDetails.price}$</p>
                     <span className=" ms-auto">{variantCount}</span>
-                    <Button> See Product
-                    </Button>
                 </div>
+                <Button className="mb-auto w-100"> See Product
+                </Button>
             </Card.Body>
         </Card>
     )
